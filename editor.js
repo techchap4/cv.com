@@ -36,6 +36,12 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+  /* Shared template registry (cv-templates.js). Falls back safely if it is missing. */
+  const CVT = window.CVTemplates || {
+    normalize: v => v || 'modern',
+    name: v => v || 'Modern'
+  };
+
   const PREFIX = 'cvbuilder_';
   const CURRENT = 'current_cv';
 
@@ -115,9 +121,7 @@
         m.cv_title ||
         'My Professional CV',
 
-      template:
-        m.template ||
-        'modern',
+      template: CVT.normalize(m.template),
 
       primary_color:
         m.primary_color ||
@@ -954,6 +958,8 @@
       );
 
     }
+
+    data.template = CVT.normalize(data.template);
 
     const title =
       $('#cvTitle');
@@ -2569,6 +2575,12 @@
         `"${data.font || 'Inter'}",Arial,sans-serif`
       );
 
+    /* selected template */
+    data.template = CVT.normalize(data.template);
+    $('#cvPages')?.setAttribute('data-template', data.template);
+    const tplName = $('#currentTemplateName');
+    if (tplName) tplName.textContent = CVT.name(data.template);
+
   }
 
   /* =========================================================
@@ -3405,6 +3417,8 @@
 
     p.className =
       'cv-page';
+
+    p.dataset.template = CVT.normalize(data.template);
 
     p.innerHTML =
       `

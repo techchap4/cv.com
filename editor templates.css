@@ -1,0 +1,120 @@
+/* =========================================================
+   EDITOR-TEMPLATES.CSS
+   The 12 CV designs used by the editor's live preview, PDF
+   and print output.
+
+   editor.js puts data-template="<id>" on every .cv-page, and
+   each block below restyles the SAME markup for that design.
+   The IDs match cv-templates.js and templates.js.
+
+   Load it AFTER editor.css:
+     <link rel="stylesheet" href="editor.css">
+     <link rel="stylesheet" href="editor-templates.css">
+========================================================= */
+
+/* keep page decorations inside the A4 sheet */
+.cv-page[data-template] { position: relative; }
+
+
+/* ---------- chronological ---------- */
+.cv-page[data-template="chronological"] .cv-page-header { text-align:center;border-bottom:1px solid #222; }
+.cv-page[data-template="chronological"] .cv-photo { float:none;display:block;margin:0 auto 3mm; }
+.cv-page[data-template="chronological"] .cv-contact { justify-content:center; }
+.cv-page[data-template="chronological"] .cv-name { text-transform:uppercase;letter-spacing:.05em;font-size:24px; }
+.cv-page[data-template="chronological"] .cv-section h3 { color:#111;border-bottom:1px solid #222; }
+
+/* ---------- functional ---------- */
+.cv-page[data-template="functional"] .cv-page-header { border-bottom:0;padding-bottom:4mm; }
+.cv-page[data-template="functional"] .cv-name { font-size:28px; }
+.cv-page[data-template="functional"] .cv-section h3 { border-bottom:0;border-left:4px solid var(--cv-primary,#15803d);background:#f3f5f4;padding:1.2mm 0 1.2mm 3mm;margin-bottom:3mm; }
+.cv-page[data-template="functional"] .cv-entry-title { color:var(--cv-primary,#15803d); }
+
+/* ---------- hybrid ---------- */
+.cv-page[data-template="hybrid"] .cv-page-header { background:var(--cv-primary,#15803d);color:#fff;border:0;border-radius:2mm;padding:7mm 7mm 6mm;margin-bottom:6mm; }
+.cv-page[data-template="hybrid"] .cv-name { color:#fff; }
+.cv-page[data-template="hybrid"] .cv-title { color:#fff; }
+.cv-page[data-template="hybrid"] .cv-contact { color:rgba(255,255,255,.92); }
+.cv-page[data-template="hybrid"] .cv-photo { border-color:#fff; }
+.cv-page[data-template="hybrid"] .cv-section h3 { border-bottom:2px solid var(--cv-primary,#15803d); }
+
+/* ---------- targeted ---------- */
+.cv-page[data-template="targeted"] .cv-page-header { border-bottom:0;border-top:5px solid var(--cv-primary,#15803d);padding-top:5mm; }
+.cv-page[data-template="targeted"] .cv-name { color:#111;font-size:26px; }
+.cv-page[data-template="targeted"] .cv-title { color:var(--cv-primary,#15803d); }
+.cv-page[data-template="targeted"] .cv-section h3 { display:inline-block;background:var(--cv-primary,#15803d);color:#fff;border:0;border-radius:1mm;padding:1mm 3mm;margin-bottom:3mm; }
+
+/* ---------- modern ---------- */
+.cv-page[data-template="modern"] { padding:15mm 16mm 15mm 22mm; }
+.cv-page[data-template="modern"]::before { content:'';position:absolute;left:0;top:0;bottom:0;width:7mm;background:var(--cv-primary,#15803d); }
+.cv-page[data-template="modern"] .cv-page-footer { left:22mm; }
+.cv-page[data-template="modern"] .cv-page-header { border-bottom:0;padding-bottom:4mm; }
+.cv-page[data-template="modern"] .cv-name { font-size:30px; }
+.cv-page[data-template="modern"] .cv-section h3 { display:inline-block;border-bottom:2px solid var(--cv-primary,#15803d);padding-bottom:1mm; }
+.cv-page[data-template="modern"] .cv-skill { background:var(--cv-primary,#15803d);color:#fff;border-color:var(--cv-primary,#15803d); }
+
+/* ---------- corporate ---------- */
+.cv-page[data-template="corporate"] { --cv-primary:#111; }
+.cv-page[data-template="corporate"] .cv-page-header { text-align:center;border-bottom:2px solid #111; }
+.cv-page[data-template="corporate"] .cv-photo { display:none; }
+.cv-page[data-template="corporate"] .cv-contact { justify-content:center; }
+.cv-page[data-template="corporate"] .cv-name { text-transform:uppercase;letter-spacing:.06em; }
+.cv-page[data-template="corporate"] .cv-section h3 { border-bottom:1px solid #111; }
+.cv-page[data-template="corporate"] .cv-skill { background:#f2f2f2;border-color:#999;border-radius:1mm; }
+
+/* ---------- minimalist ---------- */
+.cv-page[data-template="minimalist"] { --cv-primary:#333;padding:15mm 20mm 15mm; }
+.cv-page[data-template="minimalist"] .cv-page-footer { left:20mm;right:20mm; }
+.cv-page[data-template="minimalist"] .cv-page-header { border-bottom:0;padding-bottom:3mm; }
+.cv-page[data-template="minimalist"] .cv-name { font-weight:300;font-size:30px;letter-spacing:.02em;color:#111; }
+.cv-page[data-template="minimalist"] .cv-title { color:#666;font-weight:400; }
+.cv-page[data-template="minimalist"] .cv-section h3 { border-bottom:0;color:#888;font-weight:600;letter-spacing:.18em; }
+.cv-page[data-template="minimalist"] .cv-skill { background:transparent;border:0;padding:0 3mm 0 0;color:#333;font-weight:500; }
+
+/* ---------- creative ---------- */
+.cv-page[data-template="creative"] .cv-page-header { background:var(--cv-primary,#15803d);color:#fff;border:0;border-radius:0 6mm 0 6mm;padding:8mm 8mm 7mm;margin-bottom:6mm; }
+.cv-page[data-template="creative"] .cv-name { color:#fff;font-size:30px; }
+.cv-page[data-template="creative"] .cv-title { color:#fff; }
+.cv-page[data-template="creative"] .cv-contact { color:rgba(255,255,255,.92); }
+.cv-page[data-template="creative"] .cv-photo { border-color:#fff; }
+.cv-page[data-template="creative"] .cv-section h3 { border-bottom:0;font-size:13px;padding-bottom:0; }
+.cv-page[data-template="creative"] .cv-section h3::after { content:'';display:block;height:3px;width:12mm;margin-top:1.5mm;border-radius:2px;background:var(--cv-primary,#15803d); }
+.cv-page[data-template="creative"] .cv-skill { background:var(--cv-primary,#15803d);color:#fff;border-color:var(--cv-primary,#15803d); }
+.cv-page[data-template="creative"] .cv-entry-title { color:#111; }
+
+/* ---------- academic ---------- */
+.cv-page[data-template="academic"] { --cv-primary:#111; }
+.cv-page[data-template="academic"] .cv-page-header { text-align:center;border-bottom:3px double #111; }
+.cv-page[data-template="academic"] .cv-photo { float:none;display:block;margin:0 auto 3mm; }
+.cv-page[data-template="academic"] .cv-contact { justify-content:center; }
+.cv-page[data-template="academic"] .cv-name { font-size:24px;font-variant:small-caps;letter-spacing:.04em; }
+.cv-page[data-template="academic"] .cv-section h3 { text-transform:none;font-variant:small-caps;font-size:12px;letter-spacing:.06em;border-bottom:1px solid #999; }
+.cv-page[data-template="academic"] .cv-summary,
+.cv-page[data-template="academic"] .cv-entry-description { text-align:justify; }
+.cv-page[data-template="academic"] .cv-entry-org { font-style:italic;color:#333; }
+.cv-page[data-template="academic"] .cv-skill { background:transparent;border-color:#999;border-radius:1mm;color:#111; }
+
+/* ---------- infographic ---------- */
+.cv-page[data-template="infographic"] .cv-page-header { border-bottom:0;border-left:6px solid var(--cv-primary,#15803d);padding-left:5mm; }
+.cv-page[data-template="infographic"] .cv-photo { border-color:var(--cv-primary,#15803d); }
+.cv-page[data-template="infographic"] .cv-section h3 { display:inline-block;background:var(--cv-primary,#15803d);color:#fff;border:0;border-radius:1mm 4mm 4mm 1mm;padding:1.5mm 4mm;margin-bottom:3mm; }
+.cv-page[data-template="infographic"] .cv-entry { position:relative;border-left:2px solid var(--cv-primary,#15803d);padding-left:4mm;margin-left:1.5mm; }
+.cv-page[data-template="infographic"] .cv-entry::before { content:'';position:absolute;left:-5px;top:1mm;width:8px;height:8px;border-radius:50%;background:var(--cv-primary,#15803d); }
+.cv-page[data-template="infographic"] .cv-skill { background:var(--cv-primary,#15803d);color:#fff;border-color:var(--cv-primary,#15803d); }
+
+/* ---------- executive ---------- */
+.cv-page[data-template="executive"] .cv-page-header { background:#0f172a;color:#fff;border:0;border-bottom:3px solid var(--cv-primary,#15803d);padding:8mm;margin-bottom:6mm; }
+.cv-page[data-template="executive"] .cv-name { color:#fff;font-size:28px;letter-spacing:.04em; }
+.cv-page[data-template="executive"] .cv-title { color:#e2e8f0; }
+.cv-page[data-template="executive"] .cv-contact { color:#cbd5e1; }
+.cv-page[data-template="executive"] .cv-photo { border-color:#fff; }
+.cv-page[data-template="executive"] .cv-section h3 { color:#0f172a;border-bottom:2px solid #0f172a; }
+.cv-page[data-template="executive"] .cv-entry-title { font-size:11.5px; }
+
+/* ---------- ats ---------- */
+.cv-page[data-template="ats"] { --cv-primary:#000; }
+.cv-page[data-template="ats"] .cv-photo { display:none; }
+.cv-page[data-template="ats"] .cv-page-header { border-bottom:1px solid #000;padding-bottom:3mm; }
+.cv-page[data-template="ats"] .cv-name { font-size:22px; }
+.cv-page[data-template="ats"] .cv-section h3 { border-bottom:1px solid #000;letter-spacing:0; }
+.cv-page[data-template="ats"] .cv-skill { background:none;border:0;padding:0 3mm 0 0;color:#000;font-weight:400;font-size:9.8px; }
+.cv-page[data-template="ats"] .cv-entry-meta { color:#000; }
