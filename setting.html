@@ -1779,61 +1779,76 @@ document.querySelectorAll(
 );
 
 
-
 /* =========================================
    LOAD USER INFORMATION
-========================================= */
+   ========================================= */
 
-const loggedInUser =
-    JSON.parse(
-        localStorage.getItem("loggedInUser")
-    );
+const currentUser =
+    window.CVBuilderAuth
+        ? CVBuilderAuth.getUser()
+        : null;
 
 
-if (loggedInUser) {
-
+if (currentUser) {
 
     const name =
-        loggedInUser.full_name ||
-        loggedInUser.name ||
-        "User";
+        CVBuilderAuth.getUserName(
+            currentUser
+        );
 
 
     const email =
-        loggedInUser.email ||
+        currentUser.email || "";
+
+
+    const jobTitle =
+        currentUser.job_title ||
+        currentUser.professional_title ||
         "";
 
 
-    document.getElementById(
-        "topUserName"
-    ).textContent = name;
+    const settingsName =
+        document.getElementById(
+            "settingsName"
+        );
 
 
-    document.getElementById(
-        "userAvatar"
-    ).textContent =
-        name.charAt(0).toUpperCase();
+    const settingsEmail =
+        document.getElementById(
+            "settingsEmail"
+        );
 
 
-    document.getElementById(
-        "settingsName"
-    ).value = name;
+    const settingsJobTitle =
+        document.getElementById(
+            "settingsJobTitle"
+        );
 
 
-    document.getElementById(
-        "settingsEmail"
-    ).value = email;
+    if (settingsName) {
+
+        settingsName.value =
+            name;
+
+    }
 
 
-    document.getElementById(
-        "settingsJobTitle"
-    ).value =
-        loggedInUser.job_title || "";
+    if (settingsEmail) {
+
+        settingsEmail.value =
+            email;
+
+    }
+
+
+    if (settingsJobTitle) {
+
+        settingsJobTitle.value =
+            jobTitle;
+
+    }
 
 }
-
-
-
 /* =========================================
    GENERAL SETTINGS
 ========================================= */
@@ -1887,11 +1902,19 @@ generalForm.addEventListener(
         updatedUser.job_title = jobTitle;
 
 
-        localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(updatedUser)
-        );
+       if (window.CVBuilderAuth) {
 
+    CVBuilderAuth.updateUser({
+
+        name: name,
+
+        full_name: name,
+
+        job_title: jobTitle
+
+    });
+
+}
 
         document.getElementById(
             "topUserName"

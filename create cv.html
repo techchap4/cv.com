@@ -654,37 +654,38 @@
 <!-- ================= JAVASCRIPT ================= -->
 <script>
 
-    /* =========================================
-       USER INFORMATION
-    ========================================= */
+   /* =========================================
+   USER INFORMATION
+========================================= */
 
-    const savedUser = localStorage.getItem("cvbuilder_user");
+const currentUser =
+    window.CVBuilderAuth
+        ? CVBuilderAuth.getUser()
+        : null;
 
-    if (savedUser) {
 
-        try {
+if (currentUser) {
 
-            const user = JSON.parse(savedUser);
+    const name =
+        CVBuilderAuth.getUserName(
+            currentUser
+        );
 
-            if (user.full_name) {
-                document.getElementById("userName").textContent =
-                    user.full_name;
-            }
 
-            if (user.name) {
-                document.getElementById("userName").textContent =
-                    user.name;
-            }
+    const userName =
+        document.getElementById(
+            "userName"
+        );
 
-        } catch (error) {
 
-            console.log("User information could not be loaded.");
+    if (userName) {
 
-        }
+        userName.textContent =
+            name;
 
     }
 
-
+}
     /* =========================================
        CV TITLE CHARACTER COUNT
     ========================================= */
@@ -917,19 +918,20 @@
 
 
     /* =========================================
-       LOGOUT
-    ========================================= */
+       
 
-    function logout() {
+   LOGOUT
+========================================= */
 
-        localStorage.removeItem("cvbuilder_user");
+function logout() {
 
-        localStorage.removeItem("current_cv");
+    if (window.CVBuilderAuth) {
 
-        window.location.href =
-            "login.html";
+        CVBuilderAuth.logout();
 
     }
+
+}
 
 
     document

@@ -1215,22 +1215,6 @@
         );
 
 
-    if (loggedInUser) {
-
-        const name =
-            loggedInUser.full_name ||
-            loggedInUser.name ||
-            "User";
-
-
-        document.getElementById("welcomeName")
-            .textContent =
-            "Welcome back, " + name + "!";
-
-
-        document.getElementById("topUserName")
-            .textContent =
-            name;
 
 
         document.getElementById("userAvatar")
