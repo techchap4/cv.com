@@ -1,209 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpg" href="favicon.jpg">
     <title>GreenAuth - Login</title>
-
     <link rel="stylesheet" href="login-style.css">
-
-    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
-    <main class="auth-container">
+<main class="auth-container">
+<section class="auth-card">
 
-        <section class="auth-card">
+<!-- ================================= -->
+<!-- LOGO -->
+<!-- ================================= -->
+<div class="logo">
+    <img src="authlogo.png" alt="GreenAuth Logo" class="logo-icon">
+    <span>GreenAuth Extra Cv</span>
+</div>
 
-            <!-- Logo -->
-            <div class="logo">
-            <img src="authlogo.png" alt="GreenAuth Logo" class="logo-icon">    
-            
-                <span>GreenAuth Extra Cv</span>
+
+<!-- ================================= -->
+<!-- LOGIN -->
+<!-- ================================= -->
+<div class="form-section active" id="loginSection">
+
+    <h1>Welcome back</h1>
+    <p class="subtitle">Log in to your account</p>
+
+    <form id="loginForm">
+
+        <div class="input-group">
+            <label for="loginEmail">Email address</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com"
+                   autocomplete="email" required>
+        </div>
+
+        <div class="input-group">
+            <div class="label-row">
+                <label for="loginPassword">Password</label>
+                <a href="#" class="forgot" id="forgotPasswordLink">Forgot password?</a>
             </div>
 
-            <!-- Login -->
-            <div class="form-section active" id="loginSection">
-
-                <h1>Welcome back</h1>
-                <p class="subtitle">Log in to your account</p>
-
-                <form id="loginForm">
-
-                    <div class="input-group">
-                        <label for="loginEmail">Email address</label>
-                        <input
-                            type="email"
-                            id="loginEmail"
-                            placeholder="you@example.com"
-                            required
-                        >
-                    </div>
-
-                    <div class="input-group">
-                        <div class="label-row">
-                            <label for="loginPassword">Password</label>
-                            <a href="#" class="forgot">Forgot password?</a>
-                        </div>
-
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="loginPassword"
-                                placeholder="Enter your password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                onclick="togglePassword('loginPassword', this)"
-                            >
-                                
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="remember">
-                        <label>
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="primary-btn">
-                        Log in
-                    </button>
-
-                    <p id="loginStatus" class="login-status" role="status" aria-live="polite"></p>
-
-                </form>
-
-                <div class="divider">
-                    <span>OR</span>
-                </div>
-
-                <button class="google-btn" onclick="googleLogin()">
-                    <span class="google-icon">G</span>
-                    Continue with Google
+            <div class="password-wrapper">
+                <input type="password" id="loginPassword" placeholder="Enter your password"
+                       autocomplete="current-password" required>
+                <button type="button" class="password-toggle"
+                        onclick="togglePassword('loginPassword', this)">
+                    <span class="material-icons">visibility</span>
                 </button>
-
-                <p class="switch-text">
-                    Don't have an account?
-                    <button onclick="showSignup()">Create account</button>
-                </p>
-
             </div>
+        </div>
+
+        <div class="remember">
+            <label>
+                <input type="checkbox" id="rememberMe">
+                <span>Remember me</span>
+            </label>
+        </div>
+
+        <button type="submit" class="primary-btn">Log in</button>
+
+        <p id="loginStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <div class="divider"><span>OR</span></div>
+
+    <button type="button" class="google-btn" onclick="googleLogin()">
+        <span class="google-icon">G</span>
+        Continue with Google
+    </button>
+
+    <p class="switch-text">
+        Don't have an account?
+        <button type="button" onclick="showSignup()">Create account</button>
+    </p>
+
+</div>
 
 
-            <!-- Sign Up -->
-            <div class="form-section" id="signupSection">
+<!-- ================================= -->
+<!-- SIGNUP -->
+<!-- ================================= -->
+<div class="form-section" id="signupSection">
 
-                <h1>Create account</h1>
-                <p class="subtitle">Join GreenAuth today</p>
+    <h1>Create account</h1>
+    <p class="subtitle">Join GreenAuth today</p>
 
-                <form id="signupForm">
+    <form id="signupForm">
 
-                    <div class="input-group">
-                        <label for="signupName">Full name</label>
-                        <input
-                            type="text"
-                            id="signupName"
-                            placeholder="John Doe"
-                            required
-                        >
-                    </div>
+        <div class="input-group">
+            <label for="signupName">Full name</label>
+            <input type="text" id="signupName" placeholder="John Doe"
+                   autocomplete="name" required>
+        </div>
 
-                    <div class="input-group">
-                        <label for="signupEmail">Email address</label>
-                        <input
-                            type="email"
-                            id="signupEmail"
-                            placeholder="you@example.com"
-                            required
-                        >
-                    </div>
+        <div class="input-group">
+            <label for="signupEmail">Email address</label>
+            <input type="email" id="signupEmail" placeholder="you@example.com"
+                   autocomplete="email" required>
+        </div>
 
-                    <div class="input-group">
-                        <label for="signupPassword">Password</label>
-
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="signupPassword"
-                                placeholder="Create a password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                onclick="togglePassword('signupPassword', this)"
-                            >
-                                <span class="material-icons">visibility</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="confirmPassword">Confirm password</label>
-
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                placeholder="Confirm your password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                onclick="togglePassword('confirmPassword', this)"
-                            >
-                                <span class="material-icons">visibility</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <label class="terms">
-                        <input type="checkbox" required>
-                        <span>
-                            I agree to the
-                            <a href="#">Terms & Conditions</a>
-                        </span>
-                    </label>
-
-                    <button type="submit" class="primary-btn">
-                        Create account
-                    </button>
-
-                </form>
-
-                <div class="divider">
-                    <span>OR</span>
-                </div>
-
-                <button class="google-btn" onclick="googleLogin()">
-                    <span class="google-icon">G</span>
-                    Sign up with Google
+        <div class="input-group">
+            <label for="signupPassword">Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="signupPassword" placeholder="Create a password (min. 8 characters)"
+                       autocomplete="new-password" minlength="8" required>
+                <button type="button" class="password-toggle"
+                        onclick="togglePassword('signupPassword', this)">
+                    <span class="material-icons">visibility</span>
                 </button>
-
-                <p class="switch-text">
-                    Already have an account?
-                    <button onclick="showLogin()">Log in</button>
-                </p>
-
             </div>
+        </div>
 
-        </section>
+        <div class="input-group">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="password-wrapper">
+                <input type="password" id="confirmPassword" placeholder="Confirm your password"
+                       autocomplete="new-password" minlength="8" required>
+                <button type="button" class="password-toggle"
+                        onclick="togglePassword('confirmPassword', this)">
+                    <span class="material-icons">visibility</span>
+                </button>
+            </div>
+        </div>
 
-    </main>
+        <label class="terms">
+            <input type="checkbox" required>
+            <span>I agree to the <a href="#">Terms &amp; Conditions</a></span>
+        </label>
 
-    <script src="login.js"></script>
+        <button type="submit" class="primary-btn">Create account</button>
+
+        <p id="signupStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <div class="divider"><span>OR</span></div>
+
+    <button type="button" class="google-btn" onclick="googleLogin()">
+        <span class="google-icon">G</span>
+        Sign up with Google
+    </button>
+
+    <p class="switch-text">
+        Already have an account?
+        <button type="button" onclick="showLogin()">Log in</button>
+    </p>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- SIGNUP OTP -->
+<!-- ================================= -->
+<div class="form-section" id="signupVerifySection">
+
+    <h1>Verify your email</h1>
+    <p class="subtitle">
+        We sent a 6-digit verification code to
+        <strong id="signupEmailDisplay"></strong>.
+    </p>
+
+    <form id="signupVerifyForm">
+
+        <div class="input-group">
+            <label for="signupOTP">Verification code</label>
+            <input type="text" id="signupOTP" placeholder="Enter 6-digit code"
+                   maxlength="6" inputmode="numeric" pattern="\d{6}"
+                   autocomplete="one-time-code" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Verify email</button>
+
+        <p id="signupVerifyStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <button type="button" class="google-btn" id="resendSignupOTP">
+        Resend verification code
+    </button>
+
+    <p class="switch-text">
+        <button type="button" onclick="showSignup()">Back to signup</button>
+    </p>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- FORGOT PASSWORD -->
+<!-- ================================= -->
+<div class="form-section" id="forgotSection">
+
+    <h1>Forgot password?</h1>
+    <p class="subtitle">Enter your email and we'll send you a reset code.</p>
+
+    <form id="forgotForm">
+
+        <div class="input-group">
+            <label for="forgotEmail">Email address</label>
+            <input type="email" id="forgotEmail" placeholder="you@example.com"
+                   autocomplete="email" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Send reset code</button>
+
+        <p id="forgotStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <p class="switch-text">
+        <button type="button" onclick="showLogin()">Back to login</button>
+    </p>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- RESET OTP -->
+<!-- ================================= -->
+<div class="form-section" id="resetOTPSection">
+
+    <h1>Enter reset code</h1>
+    <p class="subtitle">
+        Enter the 6-digit code sent to
+        <strong id="resetEmailDisplay"></strong>.
+    </p>
+
+    <form id="resetOTPForm">
+
+        <div class="input-group">
+            <label for="resetOTP">Verification code</label>
+            <input type="text" id="resetOTP" placeholder="Enter 6-digit code"
+                   maxlength="6" inputmode="numeric" pattern="\d{6}"
+                   autocomplete="one-time-code" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Verify code</button>
+
+        <p id="resetOTPStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <button type="button" class="google-btn" id="resendResetOTP">
+        Resend reset code
+    </button>
+
+    <p class="switch-text">
+        <button type="button" onclick="showLogin()">Cancel</button>
+    </p>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- NEW PASSWORD -->
+<!-- ================================= -->
+<div class="form-section" id="newPasswordSection">
+
+    <h1>Create new password</h1>
+    <p class="subtitle">Your email has been verified. Create a new password.</p>
+
+    <form id="newPasswordForm">
+
+        <div class="input-group">
+            <label for="newPassword">New password</label>
+            <div class="password-wrapper">
+                <input type="password" id="newPassword" placeholder="Create new password (min. 8 characters)"
+                       autocomplete="new-password" minlength="8" required>
+                <button type="button" class="password-toggle"
+                        onclick="togglePassword('newPassword', this)">
+                    <span class="material-icons">visibility</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="confirmNewPassword">Confirm new password</label>
+            <div class="password-wrapper">
+                <input type="password" id="confirmNewPassword" placeholder="Confirm new password"
+                       autocomplete="new-password" minlength="8" required>
+                <button type="button" class="password-toggle"
+                        onclick="togglePassword('confirmNewPassword', this)">
+                    <span class="material-icons">visibility</span>
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" class="primary-btn">Change password</button>
+
+        <p id="newPasswordStatus" class="login-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+</div>
+
+</section>
+</main>
+
+<script src="login.js"></script>
 
 </body>
 </html>
