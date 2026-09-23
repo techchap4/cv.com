@@ -1,0 +1,121 @@
+/* =========================================================
+   cv-print.css
+   Adds A4 page sizing + unlimited-page support to the CV
+   preview, and makes "Download / Print" export a clean,
+   multi-page PDF via the browser's print pipeline.
+   This file is additive: it does not modify editor.css.
+========================================================= */
+
+:root {
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+  --a4-margin: 14mm;
+}
+
+/* ---------------------------------------------------------
+   ON-SCREEN PREVIEW
+   The preview is sized like a real A4 sheet and is allowed
+   to grow past one page height instead of being clipped, so
+   a long CV naturally shows as multiple stacked "pages".
+--------------------------------------------------------- */
+
+#previewStage {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+#cvPreview.cv-page {
+  width: var(--a4-width);
+  min-height: var(--a4-height);
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: #fff;
+  transform: scale(var(--preview-scale, 1));
+  transform-origin: top center;
+
+  /* Faint horizontal guides every A4 height so it's clear
+     where the document will break into separate printed
+     pages — purely a visual guide, not a real DOM split. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--a4-height) - 1px),
+    rgba(15, 23, 42, 0.14) calc(var(--a4-height) - 1px),
+    rgba(15, 23, 42, 0.14) var(--a4-height)
+  );
+}
+
+/* Infographic / executive layouts use side-by-side columns;
+   keep them inside the A4 width too. */
+#cvPreview.cv-page .infographic-layout,
+#cvPreview.cv-page .executive-layout {
+  min-height: var(--a4-height);
+}
+
+/* ---------------------------------------------------------
+   PRINT / "DOWNLOAD" (Save as PDF)
+   Only the CV itself is printed. Content flows across as
+   many A4 pages as it needs — there is no page limit.
+--------------------------------------------------------- */
+
+@media print {
+
+  @page {
+    size: A4;
+    margin: var(--a4-margin);
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    height: auto !important;
+  }
+
+  /* Hide the whole editor chrome ... */
+  body.cv-printing * {
+    visibility: hidden;
+  }
+
+  /* ...except the CV content itself. */
+  body.cv-printing #cvPreview,
+  body.cv-printing #cvPreview * {
+    visibility: visible;
+  }
+
+  body.cv-printing #cvPreview.cv-page {
+    position: static;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 0;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    border: none !important;
+    background-image: none !important;
+    transform: none !important;
+  }
+
+  /* Let the document flow naturally onto as many pages as
+     needed, without cutting an entry or section in half. */
+  body.cv-printing .cv-section,
+  body.cv-printing .cv-entry,
+  body.cv-printing .repeat-card,
+  body.cv-printing .cv-page-header,
+  body.cv-printing .info-side,
+  body.cv-printing .exec-head {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body.cv-printing .infographic-layout,
+  body.cv-printing .executive-layout {
+    display: block;
+  }
+}
