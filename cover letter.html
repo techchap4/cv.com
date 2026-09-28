@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Cover Letter | CVBuilder</title>
+<link rel="stylesheet" href="cover-letter.css">
+</head>
+<body>
+
+  <header class="cl-header">
+    <div class="cl-header-inner">
+      <a href="dashboard.html" class="cl-logo">CVBuilder</a>
+      <nav class="cl-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="templates.html">CV Templates</a>
+        <a href="create_cover_letter.html" class="active">Cover Letter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cl-main">
+    <h1 class="cl-title">Create Your Cover Letter</h1>
+    <p class="cl-subtitle">Fill in the details below and watch your cover letter build itself in real time.</p>
+
+    <div class="cl-layout">
+
+      <!-- ============ FORM PANEL ============ -->
+      <section class="cl-form-panel">
+
+        <div class="cl-field-group">
+          <h2>Letter Type</h2>
+          <label class="cl-label" for="letterType">What kind of cover letter is this?</label>
+          <select id="letterType">
+            <option value="application">Standard Application &mdash; applying to a posted job</option>
+            <option value="referral">Referral &mdash; someone inside the company referred you</option>
+            <option value="prospecting">Prospecting / Letter of Interest &mdash; no open role, cold interest</option>
+            <option value="networking">Networking &mdash; reaching out for advice or an introduction</option>
+            <option value="career-change">Career Change &mdash; switching industries or roles</option>
+          </select>
+          <p class="cl-type-hint" id="typeHint"></p>
+
+          <div id="conditionalFieldWrap" class="cl-hidden">
+            <label class="cl-label" id="conditionalFieldLabel" for="conditionalField">Referral Name</label>
+            <input type="text" id="conditionalField" placeholder="">
+          </div>
+        </div>
+
+        <div class="cl-field-group">
+          <h2>Style</h2>
+
+          <label class="cl-label">Template</label>
+          <div class="cl-template-choices" id="templateChoices">
+            <button type="button" class="cl-template-btn active" data-template="modern">Modern</button>
+            <button type="button" class="cl-template-btn" data-template="banner">Banner</button>
+            <button type="button" class="cl-template-btn" data-template="bold">Bold Title</button>
+          </div>
+
+          <label class="cl-label" for="primaryColor">Primary Color</label>
+          <input type="color" id="primaryColor" value="#2563eb">
+
+          <label class="cl-label" for="fontChoice">Font</label>
+          <select id="fontChoice">
+            <option value="'Helvetica Neue', Arial, sans-serif">Helvetica / Arial</option>
+            <option value="'Georgia', serif">Georgia</option>
+            <option value="'Courier New', monospace">Courier New</option>
+            <option value="'Poppins', sans-serif">Poppins</option>
+          </select>
+        </div>
+
+        <div class="cl-field-group">
+          <h2>Your Details</h2>
+          <label class="cl-label" for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Jane Doe">
+
+          <label class="cl-label" for="yourEmail">Email</label>
+          <input type="email" id="yourEmail" placeholder="jane@example.com">
+
+          <label class="cl-label" for="yourPhone">Phone</label>
+          <input type="text" id="yourPhone" placeholder="+254 700 000000">
+
+          <label class="cl-label" for="yourAddress">Address (optional)</label>
+          <input type="text" id="yourAddress" placeholder="Nairobi, Kenya">
+        </div>
+
+        <div class="cl-field-group">
+          <h2>Recipient</h2>
+          <label class="cl-label" for="letterDate">Date</label>
+          <input type="date" id="letterDate">
+
+          <label class="cl-label" for="hiringManager">Hiring Manager's Name</label>
+          <input type="text" id="hiringManager" placeholder="Hiring Manager">
+
+          <label class="cl-label" for="companyName">Company Name</label>
+          <input type="text" id="companyName" placeholder="Acme Corp">
+
+          <label class="cl-label" for="companyAddress">Company Address (optional)</label>
+          <input type="text" id="companyAddress" placeholder="123 Business Rd, City">
+
+          <label class="cl-label" for="jobTitle" id="jobTitleLabel">Job Title You're Applying For</label>
+          <input type="text" id="jobTitle" placeholder="Frontend Developer">
+        </div>
+
+        <div class="cl-field-group">
+          <h2>Letter Content</h2>
+          <label class="cl-label" for="greeting">Greeting</label>
+          <input type="text" id="greeting" placeholder="Dear Hiring Manager,">
+
+          <label class="cl-label" for="openingParagraph">Opening Paragraph</label>
+          <textarea id="openingParagraph" rows="4"></textarea>
+
+          <label class="cl-label" for="bodyParagraph">Body Paragraph</label>
+          <textarea id="bodyParagraph" rows="6"></textarea>
+
+          <label class="cl-label" for="closingParagraph">Closing Paragraph</label>
+          <textarea id="closingParagraph" rows="4"></textarea>
+
+          <label class="cl-label" for="signOff">Sign-off</label>
+          <input type="text" id="signOff" placeholder="Sincerely,">
+        </div>
+
+        <div class="cl-actions">
+          <button type="button" id="saveBtn" class="cl-btn cl-btn-secondary">Save</button>
+          <button type="button" id="downloadBtn" class="cl-btn cl-btn-primary">Download / Print</button>
+        </div>
+        <p id="saveStatus" class="cl-save-status"></p>
+      </section>
+
+      <!-- ============ PREVIEW PANEL ============ -->
+      <section class="cl-preview-panel">
+        <div class="cl-preview-wrap">
+          <div id="letterPreview" class="cl-letter cl-template-modern">
+
+            <div class="cl-letter-sender">
+              <div class="cl-sender-name" id="pvName">Your Name</div>
+              <div class="cl-sender-contact">
+                <span id="pvEmail">your@email.com</span>
+                <span id="pvPhone">+000 000 0000</span>
+                <span id="pvAddress"></span>
+              </div>
+            </div>
+
+            <div class="cl-letter-date" id="pvDate">Date</div>
+
+            <div class="cl-letter-recipient">
+              <div id="pvManager">Hiring Manager</div>
+              <div id="pvCompany">Company Name</div>
+              <div id="pvCompanyAddress"></div>
+            </div>
+
+            <div class="cl-letter-tag" id="pvConditional"></div>
+
+            <div class="cl-letter-greeting" id="pvGreeting">Dear Hiring Manager,</div>
+
+            <div class="cl-letter-body">
+              <p id="pvOpening">Your opening paragraph will appear here as you type it on the left.</p>
+              <p id="pvBody">Your body paragraph will appear here.</p>
+              <p id="pvClosing">Your closing paragraph will appear here.</p>
+            </div>
+
+            <div class="cl-letter-signoff">
+              <div id="pvSignOff">Sincerely,</div>
+              <div class="cl-letter-signature" id="pvSignName">Your Name</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="cover-letter.js"></script>
+</body>
+</html>

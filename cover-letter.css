@@ -1,0 +1,351 @@
+:root {
+  --cl-primary: #2563eb;
+  --cl-font: 'Helvetica Neue', Arial, sans-serif;
+  --cl-bg: #f4f6fb;
+  --cl-panel-bg: #ffffff;
+  --cl-border: #e2e5ec;
+  --cl-text: #1f2430;
+  --cl-muted: #6b7280;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: var(--cl-bg);
+  color: var(--cl-text);
+}
+
+/* ---------- Header ---------- */
+.cl-header {
+  background: var(--cl-panel-bg);
+  border-bottom: 1px solid var(--cl-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.cl-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cl-logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--cl-primary);
+  text-decoration: none;
+}
+.cl-nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: var(--cl-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.cl-nav a.active,
+.cl-nav a:hover {
+  color: var(--cl-primary);
+}
+
+/* ---------- Main layout ---------- */
+.cl-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+.cl-title {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+.cl-subtitle {
+  color: var(--cl-muted);
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+.cl-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .cl-layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- Form panel ---------- */
+.cl-form-panel {
+  background: var(--cl-panel-bg);
+  border: 1px solid var(--cl-border);
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.cl-field-group {
+  margin-bottom: 24px;
+}
+.cl-field-group h2 {
+  font-size: 1rem;
+  margin: 0 0 12px;
+  color: var(--cl-primary);
+  border-bottom: 1px solid var(--cl-border);
+  padding-bottom: 6px;
+}
+.cl-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cl-muted);
+  margin: 10px 0 4px;
+}
+.cl-form-panel input[type="text"],
+.cl-form-panel input[type="email"],
+.cl-form-panel input[type="date"],
+.cl-form-panel select,
+.cl-form-panel textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--cl-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+}
+.cl-form-panel input[type="color"] {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--cl-border);
+  border-radius: 8px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.cl-type-hint {
+  font-size: 0.8rem;
+  color: var(--cl-muted);
+  margin: 8px 2px 0;
+  line-height: 1.4;
+}
+.cl-hidden {
+  display: none !important;
+}
+
+.cl-template-choices {
+  display: flex;
+  gap: 8px;
+}
+.cl-template-btn {
+  flex: 1;
+  padding: 8px 6px;
+  border: 1px solid var(--cl-border);
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cl-muted);
+}
+.cl-template-btn.active {
+  border-color: var(--cl-primary);
+  color: var(--cl-primary);
+  background: #eef3ff;
+}
+
+.cl-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.cl-btn {
+  flex: 1;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cl-btn-primary {
+  background: var(--cl-primary);
+  color: #fff;
+}
+.cl-btn-secondary {
+  background: #eef1f6;
+  color: var(--cl-text);
+}
+.cl-save-status {
+  font-size: 0.8rem;
+  color: #16a34a;
+  margin: 8px 2px 0;
+  min-height: 1em;
+}
+
+/* ---------- Preview panel ---------- */
+.cl-preview-panel {
+  display: flex;
+  justify-content: center;
+}
+.cl-preview-wrap {
+  width: 100%;
+  max-width: 720px;
+}
+.cl-letter {
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 60px 55px;
+  min-height: 900px;
+  font-family: var(--cl-font);
+  color: #222;
+  line-height: 1.6;
+}
+.cl-sender-name {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--cl-primary);
+}
+.cl-sender-contact {
+  font-size: 0.85rem;
+  color: #555;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.cl-letter-date {
+  margin-top: 28px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.cl-letter-recipient {
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+.cl-letter-tag {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--cl-primary);
+}
+.cl-letter-tag:empty {
+  display: none;
+}
+.cl-letter-greeting {
+  margin-top: 26px;
+  font-weight: 600;
+}
+.cl-letter-body {
+  margin-top: 16px;
+}
+.cl-letter-body p {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+.cl-letter-signoff {
+  margin-top: 20px;
+}
+.cl-letter-signature {
+  margin-top: 34px;
+  font-weight: 600;
+  color: var(--cl-primary);
+}
+
+/* ---------- Template: Modern (default look above) ---------- */
+.cl-template-modern .cl-sender-name {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- Template: Banner ---------- */
+/* Full-bleed colored header band, name + contact in white, badge accent */
+.cl-template-banner {
+  padding-top: 0;
+}
+.cl-template-banner .cl-letter-sender {
+  position: relative;
+  overflow: hidden;
+  background: var(--cl-primary);
+  color: #fff;
+  margin: 0 -55px 26px;
+  padding: 34px 55px 26px;
+}
+.cl-template-banner .cl-letter-sender::before {
+  content: '';
+  position: absolute;
+  top: -55px;
+  right: -35px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+}
+.cl-template-banner .cl-letter-sender::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 55px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.55);
+}
+.cl-template-banner .cl-sender-name {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+.cl-template-banner .cl-sender-contact {
+  position: relative;
+  z-index: 1;
+  color: rgba(255,255,255,0.85);
+  margin-top: 8px;
+}
+.cl-template-banner .cl-letter-date {
+  text-align: right;
+}
+.cl-template-banner .cl-letter-greeting {
+  color: var(--cl-primary);
+}
+
+/* ---------- Template: Bold Title ---------- */
+/* Big bold uppercase letterhead name, cream paper, stacked contact lines */
+.cl-template-bold {
+  background: #fbf9f4;
+}
+.cl-template-bold .cl-letter-sender {
+  border-bottom: 3px solid var(--cl-primary);
+  padding-bottom: 18px;
+  margin-bottom: 8px;
+}
+.cl-template-bold .cl-sender-name {
+  display: block;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cl-primary);
+  margin-bottom: 10px;
+}
+.cl-template-bold .cl-sender-contact {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  color: #555;
+}
+.cl-template-bold .cl-letter-greeting {
+  font-weight: 700;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .cl-header, .cl-form-panel, .cl-title, .cl-subtitle { display: none !important; }
+  .cl-main { padding: 0; max-width: none; }
+  .cl-layout { display: block; }
+  .cl-letter { box-shadow: none; padding: 0; }
+}
